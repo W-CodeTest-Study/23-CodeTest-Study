@@ -2,15 +2,13 @@ def solution(n, times):
     # times배열에 숫자분배, n을 숫자분배해서 가장 작은 값 구하기
     # 현재 케이스는 4,2로 분배한 상태에서 가장 큰 값이 answer후보 중 가장 작은 값이 answer
     # answer//10=2=20, answer//7=4=28 이 중 큰거 28
-    # n을 분배하는 기준을 모르겠당...ㅎㅎ
+    # n을 분배하는 기준을 모르겠당...ㅎㅎ -> 노가다로
 
-    # 남은 n*작은수 < 그냥 큰수  면 큰수에 넣을 필요없음
-    # 시간개념 넣자 크면 넣어보고 비교
     times.sort()
     count_table = [0 for i in range(len(times))]
     temp_table = [0 for i in range(len(times))]  # 임시 count테이블
 
-    candidate = [0 for i in range(len(times))]
+    candidate = [0 for i in range(len(times))]  # 임시테이블을 통해 구한 최대시간을 넣음
     arr = []
     # n이 1일때부터 최선의 방법으로 올라가기
     for num in range(1, n+1):
@@ -29,7 +27,7 @@ def solution(n, times):
                 arr.append(temp_table[j]*times[j])
             candidate[i] = max(arr)
 
-        # 최대값중 최소값인 index찾아서 그걸로 채택
+        # 최대시간중 최소값인 index찾아서 그걸로 채택
         count_table[candidate.index(min(candidate))] += 1
 
     answers = []
