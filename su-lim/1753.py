@@ -17,9 +17,9 @@ for _ in range(E):
 	graph[u].append((v,w))
 
 def dijkstra(start):
-	heap = [] 
+	heap = []
 	# 초기 값으로 start와 연결된 그래프들 확인 (연결안되어 있으면 차피 INF), start->start는 거리 0이므로 0, start
-	heapq.heappush(heap, (0, start)) 
+	heapq.heappush(heap, (0, start))
 	distance[start] = 0;
 
 	while heap: # q가 빌 때 까지 반복
