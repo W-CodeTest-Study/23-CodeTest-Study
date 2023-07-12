@@ -15,7 +15,7 @@ def solution(n, times):
             people += mid // time
 
         if people >= n: # mid에서 n명 이상 처리할 수 있으면, right를 조정
-            right = mid
+            right = mid - 1
             answer = mid
         else: # mid에서 n명 미만으로 처리할 수 있으면, left를 조정
             left = mid + 1
