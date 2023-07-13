@@ -1,3 +1,4 @@
+# 방법1
 def solution(n, times):
     # times배열에 숫자분배, n을 숫자분배해서 가장 작은 값 구하기
     # 현재 케이스는 4,2로 분배한 상태에서 가장 큰 값이 answer후보 중 가장 작은 값이 answer
@@ -35,5 +36,44 @@ def solution(n, times):
         answers.append(count_table[i]*times[i])
 
     answer = max(answers)
+
+    return answer
+
+# ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+# 방법2 (파라메트리 서치)
+
+
+def check(n, times, predict_return):
+    n_available = 0
+    for i in range(len(times)):
+        n_available += (predict_return//times[i])
+    # 예상답으로 나올수 있는 인원이 더 많으면 진짜 답은 예상답보다 작은 범위
+    if (n_available >= n):
+        return 1
+    # 예상답으로 나올 수 있는인원이 적으면 진짜 답은 예상답보다 큰 범위
+    else:
+        return 0
+
+
+def solution(n, times):
+    # 파라메트리 서치
+    # 예상답을 중간값으로 가정하고 그거에 맞는 n을 구하고 그거보다 큰지 작은지 확인
+    times.sort()
+
+    left = 0
+    right = max(times)*n
+    mid = (left+right)//2
+    # 여기에 확인과정넣고 다시 범위 줄이기
+    while mid != right:
+        check_result = check(n, times, mid)
+        # 진짜 답은 예상닶보다 작거나 같은경우
+        if (check_result == 1):
+            right = mid
+        # 진짜 답이 예상답보다 큰경우
+        else:
+            left = mid+1
+        mid = (left+right)//2
+
+    answer = mid
 
     return answer
