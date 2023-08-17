@@ -52,7 +52,7 @@
 #     print(check(start_point, N[i]))
 #     start_point += N[i]
 
-
+# 방법3 : 여러가지 필요없는것들 제외하고 깔끔하게 바꾸기
 T = int(input())
 answer = []
 for i in range(T):
